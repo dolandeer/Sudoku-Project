@@ -6,6 +6,7 @@ https://www.geeksforgeeks.org/program-sudoku-generator/
 
 """
 
+
 class SudokuGenerator:
     '''
 	create a sudoku board - initialize class variables and set up the 2D board
@@ -36,6 +37,7 @@ class SudokuGenerator:
 	Parameters: None
 	Return: list[list]
     '''
+
     # Each index in the "top" list (which represents rows)
     # will itself hold a list to represent columns in said row
     def get_board(self):
@@ -64,6 +66,7 @@ class SudokuGenerator:
 	Parameters: None
 	Return: None
     '''
+
     def print_board(self):
         for row in self.board:
             print(row)
@@ -78,6 +81,7 @@ class SudokuGenerator:
 
 	Return: boolean
     '''
+
     def valid_in_row(self, row, num):
         if num in self.board[row]:
             return False
@@ -91,9 +95,10 @@ class SudokuGenerator:
 	Parameters:
 	col is the index of the column we are checking
 	num is the value we are looking for in the column
-	
+
 	Return: boolean
     '''
+
     def valid_in_col(self, col, num):
         col_list = []
         for row in self.board:
@@ -115,6 +120,7 @@ class SudokuGenerator:
 
 	Return: boolean
     '''
+
     def valid_in_box(self, row_start, col_start, num):
         box_row = (row_start // 3) * 3
         box_col = (col_start // 3) * 3
@@ -134,6 +140,7 @@ class SudokuGenerator:
 
 	Return: boolean
     '''
+
     def is_valid(self, row, col, num):
         row_check = False
         col_check = False
@@ -161,6 +168,7 @@ class SudokuGenerator:
 
 	Return: None
     '''
+
     def fill_box(self, row_start, col_start):
         i = 0
         for row in self.board[row_start:row_start + 3]:
@@ -184,6 +192,7 @@ class SudokuGenerator:
 	Parameters: None
 	Return: None
     '''
+
     def fill_diagonal(self):
         self.fill_box(0, 0)
         self.fill_box(3, 3)
@@ -221,7 +230,7 @@ class SudokuGenerator:
                 if row >= self.row_length:
                     return True
 
-
+        # bug is likely here v at is_valid function
         for num in range(1, self.row_length + 1):
             if self.is_valid(row, col, num):
                 self.board[row][col] = num
@@ -238,6 +247,7 @@ class SudokuGenerator:
 	Parameters: None
 	Return: None
     '''
+
     def fill_values(self):
         self.fill_diagonal()
         self.fill_remaining(0, self.box_length)
@@ -257,6 +267,7 @@ class SudokuGenerator:
 	Parameters: None
 	Return: None
     '''
+
     def remove_cells(self):
         for i in range(self.removed_cells):
             randx = random.randint(0, 8)
@@ -269,6 +280,7 @@ class SudokuGenerator:
                     randy = random.randint(0, 8)
                 self.board[randx][randy] = 0
         return self.board
+
 
 '''
 DO NOT CHANGE
